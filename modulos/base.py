@@ -55,18 +55,24 @@ class web(object):
         element.location_once_scrolled_into_view
         element.clear()
    
-    def preencher(self, xpath, tempo, texto):
+    def preencher(self, xpath, tempo, texto, click='off'):
         self.xpath = xpath
         self.tempo = tempo
         self.texto = texto
+        self.click = click
         WebDriverWait(self.driver, self.tempo).until(
         EC.element_to_be_clickable((By.XPATH, self.xpath)))
         element = self.driver.find_element(By.XPATH, self.xpath)
         element.location_once_scrolled_into_view
+        if self.click in 'on':
+            self.clicar(self.xpath, self.tempo)
+        else:
+            pass
+        element.send_keys(texto)
         while texto in self.driver.find_element(By.XPATH, self.xpath).text:
             web.apagar(self, xpath, tempo)
             element.send_keys(self.texto)
-        element.send_keys(texto)
+        
 
         
     def ler(self, xpath, tempo):
