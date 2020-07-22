@@ -17,9 +17,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class web(object):
-
-    #driver = webdriver.Chrome()
-    #driver.quit()
     def __init__(self):
         print('Inint')
         self.start()
@@ -73,8 +70,6 @@ class web(object):
             web.apagar(self, xpath, tempo)
             element.send_keys(self.texto)
         
-
-        
     def ler(self, xpath, tempo):
         self.xpath = xpath
         self.tempo = tempo
@@ -117,3 +112,11 @@ class web(object):
 
     def framep(self):
         self.driver.switch_to_default_content()
+
+    def framex(self, xpath, tempo):
+        self.xpath = xpath
+        self.tempo = tempo
+        WebDriverWait(self.driver, self.tempo).until(
+        EC.element_to_be_clickable((By.XPATH, self.xpath)))
+        element = self.driver.find_element(By.XPATH, self.xpath)
+        self.driver.switch_to.frame(element)
