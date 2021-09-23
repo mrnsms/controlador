@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-#from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 
@@ -18,8 +18,8 @@ class web(object):
         print('Inint')
         self.start()
     def start(self):
-        #self.driver = webdriver.Chrome(ChromeDriverManager().install()) #linux
-        self.driver = webdriver.Chrome(executable_path="chromedriver.exe") #windows
+        self.driver = webdriver.Chrome(ChromeDriverManager().install()) #baixa automaticamente o chrome driver
+        #self.driver = webdriver.Chrome(executable_path="chromedriver.exe")  # usa chromdriver baixado manualmente
     def nav(self, url):
         self.url = url
         self.driver.get(self.url)
